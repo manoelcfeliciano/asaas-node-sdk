@@ -1,0 +1,44 @@
+import { BillingType } from './billing-type';
+import { Chargeback } from './chargeback';
+import { Discount } from './discount';
+import { Fine } from './fine';
+import { Interest } from './interest';
+import { Refund } from './refund';
+import { Status } from './status';
+
+export interface Payment {
+	object: 'payment';
+	id: string;
+	dateCreated: string;
+	customer: string;
+	paymentLink: string;
+	dueDate: string;
+	value: number;
+	netValue: number;
+	billingType: BillingType;
+	canBePaidAfterDueDate: boolean;
+	pixTransaction: string | null;
+	status: Status.Payment;
+	description: string;
+	externalReference: string;
+	originalValue: number | null;
+	interestValue: number | null;
+	originalDueDate: string;
+	paymentDate: string | null;
+	clientPaymentDate: string | null;
+	installmentNumber: string | null;
+	transactionReceiptUrl: string | null;
+	nossoNumero: string;
+	invoiceUrl: string;
+	bankSlipUrl: string;
+	invoiceNumber: string;
+	discount: Discount.Main;
+	fine: Fine;
+	interest: Interest;
+	deleted: boolean;
+	postalService: boolean;
+	anticipated: boolean;
+	anticipable: boolean;
+	chargeback: Chargeback.Main;
+	refunds: Refund.Payment[];
+}
