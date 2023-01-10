@@ -21,6 +21,7 @@ export * from './phone-top-up';
 export * from './pix-key';
 export * from './pix-transaction';
 export * from './refund';
+export * from './split';
 export * from './status';
 export * from './subscription';
 export * from './transfer';
