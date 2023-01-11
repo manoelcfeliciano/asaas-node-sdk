@@ -25,26 +25,26 @@ export namespace HttpRequestClient {
 
 	export type GetParams<Q = any> = BaseParams<undefined, Q>;
 
-	export interface Get<Q = any, R = any> {
-		get: (params: GetParams<Q>) => Promise<Response<R>>;
+	export interface Get {
+		get<Q, R>(params: GetParams<Q>): Promise<Response<R>>;
 	}
 
 	export type PostParams<B = any> = BaseParams<B, undefined>;
 
-	export interface Post<B = any, R = any> {
-		post: (params: PostParams<B>) => Promise<Response<R>>;
+	export interface Post {
+		post<B, R>(params: PostParams<B>): Promise<Response<R>>;
 	}
 
 	export type PutParams<B = any> = BaseParams<B, undefined>;
 
-	export interface Put<B = any, R = any> {
-		put: (params: PutParams<B>) => Promise<Response<R>>;
+	export interface Put {
+		put<B, R>(params: PutParams<B>): Promise<Response<R>>;
 	}
 
 	export type DeleteParams<Q = any> = BaseParams<undefined, Q>;
 
-	export interface Delete<Q = any, R = any> {
-		delete: (params: DeleteParams<Q>) => Promise<Response<R>>;
+	export interface Delete {
+		delete<Q, R>(params: DeleteParams<Q>): Promise<Response<R>>;
 	}
 
 	export type Method = keyof HttpRequestClient;
