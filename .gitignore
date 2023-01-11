@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+.build
+.idea/*
+
+.DS_Store
+coverage
+*.log
+.env
+.env*
+!.env.example
+
+.npmrc
+configure.js
+node_modules*/
