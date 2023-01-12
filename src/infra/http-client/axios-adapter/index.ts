@@ -69,16 +69,10 @@ export class AxiosHttpClient implements HttpRequestClient {
 	): Promise<HttpRequestClient.Response> => {
 		try {
 			const httpResponse = await requestPromise;
-			return {
-				statusCode: httpResponse.status,
-				body: httpResponse.data,
-			};
+			return httpResponse.data;
 		} catch (error: any) {
 			console.error(error);
-			return {
-				statusCode: error.response?.status,
-				body: error.response?.data,
-			};
+			return error.response?.data;
 		}
 	};
 }

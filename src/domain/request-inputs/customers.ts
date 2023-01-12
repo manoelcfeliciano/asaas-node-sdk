@@ -26,7 +26,7 @@ export namespace CustomerRequestInput {
 	}
 
 	export namespace GetList {
-		export type Params = {
+		export type Params = Partial<{
 			name: string;
 			email: string;
 			cpfCnpj: string;
@@ -34,6 +34,6 @@ export namespace CustomerRequestInput {
 			externalReference: string;
 			offset: number;
 			limit: number;
-		};
+		}>;
 	}
 }

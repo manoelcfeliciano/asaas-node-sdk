@@ -10,9 +10,9 @@ const sdk = new AsaasSdk({
 });
 
 sdk.customers
-	.getById('cus_000005024870')
-	.then((customer) => {
-		console.log(customer);
+	.getAll()
+	.then((customers) => {
+		console.log(customers);
 	})
 	.catch((error) => {
 		console.log(error);

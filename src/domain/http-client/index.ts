@@ -11,10 +11,7 @@ export namespace HttpRequestClient {
 		};
 	};
 
-	export interface Response<R = any> {
-		statusCode: number;
-		body?: R;
-	}
+	export type Response<R = any> = R;
 
 	export interface BaseParams<B = any, Q = any> {
 		url: string;
