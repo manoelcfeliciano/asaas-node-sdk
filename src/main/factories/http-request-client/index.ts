@@ -1,6 +1,7 @@
 import { HttpRequestClient } from '~/domain/http-client';
 import { AsaasSdkConfig } from '~/main/protocols/asaas-sdk-config';
 import { AxiosHttpClient } from '../../../infra/http-client/axios-adapter/index';
+import { mainConfig } from '../../config/main';
 
 export const makeHttpRequestClient = (config: AsaasSdkConfig): HttpRequestClient => {
 	return new AxiosHttpClient({
@@ -12,9 +13,11 @@ export const makeHttpRequestClient = (config: AsaasSdkConfig): HttpRequestClient
 };
 
 const getBaseURL = (config: AsaasSdkConfig) => {
+	const { production, sandbox } = mainConfig.urls;
+
 	const urls = {
-		production: 'https://www.asaas.com/api/v3',
-		sandbox: 'https://sandbox.asaas.com/api/v3',
+		production,
+		sandbox,
 	};
 
 	return config.baseUri || urls[config.environment];
