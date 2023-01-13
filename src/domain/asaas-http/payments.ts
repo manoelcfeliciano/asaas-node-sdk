@@ -1,6 +1,6 @@
 import { BillingType, Discount, Fine, Interest, Split, Status } from '../entities';
 
-export namespace PaymentsRequestInput {
+export namespace PaymentsHttp {
 	export namespace Create {
 		export type Body = {
 			customer: string;

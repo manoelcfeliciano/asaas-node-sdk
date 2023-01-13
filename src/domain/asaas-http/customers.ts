@@ -1,4 +1,4 @@
-export namespace CustomerRequestInput {
+export namespace CustomersHttp {
 	export namespace Create {
 		export type Body = {
 			name: string;
@@ -22,7 +22,7 @@ export namespace CustomerRequestInput {
 	}
 
 	export namespace Update {
-		export type Body = Partial<CustomerRequestInput.Create.Body>;
+		export type Body = Partial<CustomersHttp.Create.Body>;
 	}
 
 	export namespace GetList {

@@ -1,7 +1,7 @@
 import { BillingType, Discount, Interest, Fine, Subscription, Split } from '../entities';
-import { PaymentsRequestInput } from './payments';
+import { PaymentsHttp } from './payments';
 
-export namespace SubscriptionRequestInput {
+export namespace SubscriptionsHttp {
 	export namespace Create {
 		export type Body = {
 			customer: string;
@@ -21,16 +21,16 @@ export namespace SubscriptionRequestInput {
 	}
 
 	export namespace CreateWithCreditCard {
-		export interface Body extends SubscriptionRequestInput.Create.Body {
-			creditCard: PaymentsRequestInput.CreateWithCreditCard.Body['creditCard'];
-			creditCardHolderInfo: PaymentsRequestInput.CreateWithCreditCard.Body['creditCardHolderInfo'];
+		export interface Body extends SubscriptionsHttp.Create.Body {
+			creditCard: PaymentsHttp.CreateWithCreditCard.Body['creditCard'];
+			creditCardHolderInfo: PaymentsHttp.CreateWithCreditCard.Body['creditCardHolderInfo'];
 			creditCardToken?: string;
 			remoteIp: string;
 		}
 	}
 
 	export namespace Update {
-		export interface Body extends Partial<SubscriptionRequestInput.Create.Body> {
+		export interface Body extends Partial<SubscriptionsHttp.Create.Body> {
 			updatePendingPayments?: boolean;
 		}
 	}

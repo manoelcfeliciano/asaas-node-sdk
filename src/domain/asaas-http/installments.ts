@@ -10,7 +10,7 @@ import {
 	CreditCard,
 } from '../entities';
 
-export namespace InstallmentsRequestInput {
+export namespace InstallmentsHttp {
 	export namespace Refund {
 		export type Body = {
 			id: string;

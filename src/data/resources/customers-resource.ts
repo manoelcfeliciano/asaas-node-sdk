@@ -1,7 +1,7 @@
 import { Customer } from '~/domain/entities';
 import { BaseAsaasResponse } from '~/domain/entities/base-asaas-response';
 import { HttpRequestClient } from '~/domain/http-client';
-import { CustomerRequestInput } from '~/domain/request-inputs/customers';
+import { CustomersHttp } from '~/domain/asaas-http/customers';
 import { BaseResource } from './base-resource';
 
 export class CustomersResource extends BaseResource {
@@ -11,15 +11,24 @@ export class CustomersResource extends BaseResource {
 		});
 	}
 
-	async getAll(
-		query?: CustomerRequestInput.GetList.Params
-	): Promise<BaseAsaasResponse.List<Customer>> {
-		return this.httpClient.get<
-			CustomerRequestInput.GetList.Params,
-			BaseAsaasResponse.List<Customer>
-		>({
+	async getAll(query?: CustomersHttp.GetList.Params): Promise<BaseAsaasResponse.List<Customer>> {
+		return this.httpClient.get<CustomersHttp.GetList.Params, BaseAsaasResponse.List<Customer>>({
 			url: '/customers',
 			query,
+		});
+	}
+
+	async create(params: CustomersHttp.Create.Body) {
+		return this.httpClient.post<CustomersHttp.Create.Body, Customer>({
+			url: '/customers',
+			body: params,
+		});
+	}
+
+	async update(id: string, params: CustomersHttp.Update.Body) {
+		return this.httpClient.put<CustomersHttp.Update.Body, Customer>({
+			url: `/customers/${id}`,
+			body: params,
 		});
 	}
 }
