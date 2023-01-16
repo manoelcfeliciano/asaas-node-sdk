@@ -5,6 +5,7 @@ import {
 	Fine,
 	Interest,
 	Payment,
+	PaymentDocument,
 	Split,
 	Status,
 } from '../entities';
@@ -128,5 +129,14 @@ export namespace PaymentsHttp {
 		}>;
 
 		export type Response = Payment;
+	}
+
+	export namespace UpdateDocument {
+		export type Body = {
+			availableAfterPayment: boolean;
+			type: PaymentDocument['type'];
+		};
+
+		export type Response = PaymentDocument;
 	}
 }

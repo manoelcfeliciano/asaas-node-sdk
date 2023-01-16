@@ -118,4 +118,18 @@ export class PaymentsResource extends BaseResource {
 			url: `/payments/${id}/undoReceivedInCash`,
 		});
 	}
+
+	async updateDocument(
+		id: string,
+		docId: string,
+		params: PaymentsHttp.UpdateDocument.Body
+	): Promise<PaymentsHttp.UpdateDocument.Response> {
+		return this.httpClient.post<
+			PaymentsHttp.UpdateDocument.Body,
+			PaymentsHttp.UpdateDocument.Response
+		>({
+			url: `/payments/${id}/documents/${docId}`,
+			body: params,
+		});
+	}
 }

@@ -15,6 +15,7 @@ export * from './fine';
 export * from './installment';
 export * from './interest';
 export * from './invoice';
+export * from './payment-document';
 export * from './payment';
 export * from './payment-link';
 export * from './phone-top-up';
