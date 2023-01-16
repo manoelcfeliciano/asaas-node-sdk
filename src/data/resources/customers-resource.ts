@@ -6,7 +6,7 @@ import { BaseResource } from './base-resource';
 
 export class CustomersResource extends BaseResource {
 	async getById(id: string): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.get<{}, Customer>({
+		return this.httpClient.get<undefined, Customer>({
 			url: `/customers/${id}`,
 		});
 	}
@@ -37,7 +37,7 @@ export class CustomersResource extends BaseResource {
 
 	async remove(id: string): Promise<HttpRequestClient.Response<CustomersHttp.Remove.Response>> {
 		return this.httpClient.delete<
-			null,
+			undefined,
 			HttpRequestClient.Response<CustomersHttp.Remove.Response>
 		>({
 			url: `/customers/${id}`,
@@ -45,7 +45,7 @@ export class CustomersResource extends BaseResource {
 	}
 
 	async restore(id: string): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.post<null, HttpRequestClient.Response<Customer>>({
+		return this.httpClient.post<undefined, HttpRequestClient.Response<Customer>>({
 			url: `/customers/${id}/restore`,
 		});
 	}
