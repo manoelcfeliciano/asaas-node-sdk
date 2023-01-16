@@ -139,4 +139,8 @@ export namespace PaymentsHttp {
 
 		export type Response = PaymentDocument;
 	}
+
+	export namespace GetDocument {
+		export type Response = PaymentDocument;
+	}
 }

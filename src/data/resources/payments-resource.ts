@@ -132,4 +132,10 @@ export class PaymentsResource extends BaseResource {
 			body: params,
 		});
 	}
+
+	async getDocument(id: string, docId: string): Promise<PaymentsHttp.GetDocument.Response> {
+		return this.httpClient.get<null, PaymentsHttp.GetDocument.Response>({
+			url: `/payments/${id}/documents/${docId}`,
+		});
+	}
 }
