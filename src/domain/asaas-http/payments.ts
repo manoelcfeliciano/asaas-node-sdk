@@ -9,6 +9,7 @@ import {
 	Split,
 	Status,
 } from '../entities';
+import { BaseAsaasResponse } from '../entities/base-asaas-response';
 import { DeletedResponse } from './shared/deleted-response';
 
 export namespace PaymentsHttp {
@@ -142,5 +143,9 @@ export namespace PaymentsHttp {
 
 	export namespace GetDocument {
 		export type Response = PaymentDocument;
+	}
+
+	export namespace GetAllDocuments {
+		export type Response = BaseAsaasResponse.List<PaymentDocument>;
 	}
 }
