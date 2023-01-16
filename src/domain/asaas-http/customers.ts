@@ -25,6 +25,13 @@ export namespace CustomersHttp {
 		export type Body = Partial<CustomersHttp.Create.Body>;
 	}
 
+	export namespace Remove {
+		export type Body = {
+			deleted: boolean;
+			id: string;
+		};
+	}
+
 	export namespace GetList {
 		export type Params = Partial<{
 			name: string;

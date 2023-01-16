@@ -18,28 +18,31 @@ export class CustomersResource extends BaseResource {
 		});
 	}
 
-	async create(params: CustomersHttp.Create.Body) {
+	async create(params: CustomersHttp.Create.Body): Promise<HttpRequestClient.Response<Customer>> {
 		return this.httpClient.post<CustomersHttp.Create.Body, Customer>({
 			url: '/customers',
 			body: params,
 		});
 	}
 
-	async update(id: string, params: CustomersHttp.Update.Body) {
+	async update(
+		id: string,
+		params: CustomersHttp.Update.Body
+	): Promise<HttpRequestClient.Response<Customer>> {
 		return this.httpClient.put<CustomersHttp.Update.Body, Customer>({
 			url: `/customers/${id}`,
 			body: params,
 		});
 	}
 
-	async remove(id: string) {
-		return this.httpClient.delete<null, Customer>({
+	async remove(id: string): Promise<HttpRequestClient.Response<CustomersHttp.Remove.Body>> {
+		return this.httpClient.delete<null, HttpRequestClient.Response<CustomersHttp.Remove.Body>>({
 			url: `/customers/${id}`,
 		});
 	}
 
-	async restore(id: string) {
-		return this.httpClient.post<null, Customer>({
+	async restore(id: string): Promise<HttpRequestClient.Response<Customer>> {
+		return this.httpClient.post<null, HttpRequestClient.Response<Customer>>({
 			url: `/customers/${id}/restore`,
 		});
 	}
