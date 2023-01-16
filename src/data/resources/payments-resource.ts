@@ -144,4 +144,10 @@ export class PaymentsResource extends BaseResource {
 			url: `/payments/${id}/documents`,
 		});
 	}
+
+	async removeDocument(id: string, docId: string): Promise<PaymentsHttp.RemoveDocument.Response> {
+		return this.httpClient.delete<null, PaymentsHttp.RemoveDocument.Response>({
+			url: `/payments/${id}/documents/${docId}`,
+		});
+	}
 }

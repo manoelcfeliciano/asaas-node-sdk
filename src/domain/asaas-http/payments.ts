@@ -148,4 +148,8 @@ export namespace PaymentsHttp {
 	export namespace GetAllDocuments {
 		export type Response = BaseAsaasResponse.List<PaymentDocument>;
 	}
+
+	export namespace RemoveDocument {
+		export type Response = DeletedResponse;
+	}
 }
