@@ -33,13 +33,13 @@ export class CustomersResource extends BaseResource {
 	}
 
 	async remove(id: string) {
-		return this.httpClient.delete<CustomersHttp.Update.Body, Customer>({
+		return this.httpClient.delete<null, Customer>({
 			url: `/customers/${id}`,
 		});
 	}
 
 	async restore(id: string) {
-		return this.httpClient.post<CustomersHttp.Update.Body, Customer>({
+		return this.httpClient.post<null, Customer>({
 			url: `/customers/${id}/restore`,
 		});
 	}
