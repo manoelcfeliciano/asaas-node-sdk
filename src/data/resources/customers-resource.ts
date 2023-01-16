@@ -35,8 +35,11 @@ export class CustomersResource extends BaseResource {
 		});
 	}
 
-	async remove(id: string): Promise<HttpRequestClient.Response<CustomersHttp.Remove.Body>> {
-		return this.httpClient.delete<null, HttpRequestClient.Response<CustomersHttp.Remove.Body>>({
+	async remove(id: string): Promise<HttpRequestClient.Response<CustomersHttp.Remove.Response>> {
+		return this.httpClient.delete<
+			null,
+			HttpRequestClient.Response<CustomersHttp.Remove.Response>
+		>({
 			url: `/customers/${id}`,
 		});
 	}

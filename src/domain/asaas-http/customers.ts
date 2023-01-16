@@ -1,3 +1,5 @@
+import { DeletedResponse } from './shared/deleted-response';
+
 export namespace CustomersHttp {
 	export namespace Create {
 		export type Body = {
@@ -26,10 +28,7 @@ export namespace CustomersHttp {
 	}
 
 	export namespace Remove {
-		export type Body = {
-			deleted: boolean;
-			id: string;
-		};
+		export type Response = DeletedResponse;
 	}
 
 	export namespace GetList {

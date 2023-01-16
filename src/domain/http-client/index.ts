@@ -26,10 +26,10 @@ export namespace HttpRequestClient {
 		get<Q, R>(params: GetParams<Q>): Promise<Response<R>>;
 	}
 
-	export type PostParams<B = any> = BaseParams<B, undefined>;
+	export type PostParams<B = any, Q = undefined> = BaseParams<B, Q>;
 
 	export interface Post {
-		post<B, R>(params: PostParams<B>): Promise<Response<R>>;
+		post<B, R, Q = undefined>(params: PostParams<B, Q>): Promise<Response<R>>;
 	}
 
 	export type PutParams<B = any> = BaseParams<B, undefined>;

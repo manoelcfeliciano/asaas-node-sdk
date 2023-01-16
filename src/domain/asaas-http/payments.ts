@@ -1,4 +1,14 @@
-import { BillingType, Discount, Fine, Interest, Split, Status } from '../entities';
+import {
+	BillingType,
+	CreditCard,
+	Discount,
+	Fine,
+	Interest,
+	Payment,
+	Split,
+	Status,
+} from '../entities';
+import { DeletedResponse } from './shared/deleted-response';
 
 export namespace PaymentsHttp {
 	export namespace Create {
@@ -43,37 +53,23 @@ export namespace PaymentsHttp {
 
 	export namespace CreateWithCreditCard {
 		export interface Body extends Create.Body {
-			creditCard: {
-				holderName: string;
-				number: string;
-				expiryMonth: string;
-				expiryYear: string;
-				ccv: string;
-			};
-			creditCardHolderInfo: {
-				name: string;
-				email: string;
-				cpfCnpj: string;
-				postalCode: string;
-				addressNumber: string;
-				addressComplement?: string;
-				phone: string;
-				mobilePhone?: string;
-			};
+			creditCard: CreditCard.Input;
+			creditCardHolderInfo: CreditCard.HolderInfo;
 			creditCardToken?: string;
 			remoteIp: string;
 		}
 	}
 
 	export namespace TokenizeCreditCard {
-		export interface Body {
-			creditCardNumber: string;
-			creditCardBrand: string;
-			creditCardToken: string;
-		}
+		export type Body = CreditCard.Input;
+
+		export type Response = {
+			customer: string;
+			creditCardHolderInfo: CreditCard.HolderInfo;
+		};
 	}
 
-	export namespace ListPayments {
+	export namespace GetList {
 		export type Params = Partial<{
 			customer?: string;
 			billingType?: BillingType;
@@ -99,7 +95,38 @@ export namespace PaymentsHttp {
 		}>;
 	}
 
+	export namespace Remove {
+		export type Response = DeletedResponse;
+	}
+
 	export namespace Update {
 		export type Body = Partial<Create.Body>;
+	}
+
+	export namespace GetBoletoBarCode {
+		export type Response = {
+			identificationField: string;
+			nossoNumero: string;
+			barCode: string;
+		};
+	}
+
+	export namespace GetPixQrCode {
+		export type Response = {
+			encodedImage: string;
+			payload: string;
+			expirationDate: string;
+		};
+	}
+
+	export namespace ConfirmCashCollection {
+		export type Params = Partial<{
+			id: string;
+			paymentDate: string;
+			value: string;
+			notifyCustomer: boolean;
+		}>;
+
+		export type Response = Payment;
 	}
 }

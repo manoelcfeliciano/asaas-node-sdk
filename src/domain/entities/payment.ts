@@ -1,5 +1,6 @@
 import { BillingType } from './billing-type';
 import { Chargeback } from './chargeback';
+import { CreditCard } from './credit-card';
 import { Discount } from './discount';
 import { Fine } from './fine';
 import { Interest } from './interest';
@@ -39,6 +40,7 @@ export interface Payment {
 	postalService: boolean;
 	anticipated: boolean;
 	anticipable: boolean;
-	chargeback: Chargeback.Main;
-	refunds: Refund.Payment[];
+	chargeback?: Chargeback.Main;
+	refunds?: null | Refund.Payment[];
+	creditCard?: CreditCard;
 }
