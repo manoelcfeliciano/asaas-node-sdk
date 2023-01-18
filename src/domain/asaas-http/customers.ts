@@ -1,3 +1,6 @@
+import { Customer } from '../entities';
+import { BaseAsaasResponse } from '../entities/base-asaas-response';
+import { HttpRequestClient } from '../http-client';
 import { DeletedResponse } from './shared/deleted-response';
 
 export namespace CustomersHttp {
@@ -21,14 +24,17 @@ export namespace CustomersHttp {
 			observations?: string;
 			groupName?: string;
 		};
+
+		export type Response = HttpRequestClient.Response<Customer>;
 	}
 
 	export namespace Update {
 		export type Body = Partial<CustomersHttp.Create.Body>;
+		export type Response = HttpRequestClient.Response<Customer>;
 	}
 
 	export namespace Remove {
-		export type Response = DeletedResponse;
+		export type Response = HttpRequestClient.Response<DeletedResponse>;
 	}
 
 	export namespace GetList {
@@ -41,5 +47,14 @@ export namespace CustomersHttp {
 			offset: number;
 			limit: number;
 		}>;
+		export type Response = BaseAsaasResponse.List<Customer>;
+	}
+
+	export namespace GetById {
+		export type Response = HttpRequestClient.Response<Customer>;
+	}
+
+	export namespace Restore {
+		export type Response = HttpRequestClient.Response<Customer>;
 	}
 }

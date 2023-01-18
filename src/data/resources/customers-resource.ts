@@ -1,25 +1,22 @@
-import { Customer } from '~/domain/entities';
-import { BaseAsaasResponse } from '~/domain/entities/base-asaas-response';
-import { HttpRequestClient } from '~/domain/http-client';
 import { CustomersHttp } from '~/domain/asaas-http/customers';
 import { BaseResource } from './base-resource';
 
 export class CustomersResource extends BaseResource {
-	async getById(id: string): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.get<undefined, Customer>({
+	async getById(id: string): Promise<CustomersHttp.GetById.Response> {
+		return this.httpClient.get<undefined, CustomersHttp.GetById.Response>({
 			url: `/customers/${id}`,
 		});
 	}
 
-	async getAll(query?: CustomersHttp.GetList.Params): Promise<BaseAsaasResponse.List<Customer>> {
-		return this.httpClient.get<CustomersHttp.GetList.Params, BaseAsaasResponse.List<Customer>>({
+	async getAll(query?: CustomersHttp.GetList.Params): Promise<CustomersHttp.GetList.Response> {
+		return this.httpClient.get<CustomersHttp.GetList.Params, CustomersHttp.GetList.Response>({
 			url: '/customers',
 			query,
 		});
 	}
 
-	async create(params: CustomersHttp.Create.Body): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.post<CustomersHttp.Create.Body, Customer>({
+	async create(params: CustomersHttp.Create.Body): Promise<CustomersHttp.Create.Response> {
+		return this.httpClient.post<CustomersHttp.Create.Body, CustomersHttp.Create.Response>({
 			url: '/customers',
 			body: params,
 		});
@@ -28,24 +25,21 @@ export class CustomersResource extends BaseResource {
 	async update(
 		id: string,
 		params: CustomersHttp.Update.Body
-	): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.put<CustomersHttp.Update.Body, Customer>({
+	): Promise<CustomersHttp.Update.Response> {
+		return this.httpClient.put<CustomersHttp.Update.Body, CustomersHttp.Update.Response>({
 			url: `/customers/${id}`,
 			body: params,
 		});
 	}
 
-	async remove(id: string): Promise<HttpRequestClient.Response<CustomersHttp.Remove.Response>> {
-		return this.httpClient.delete<
-			undefined,
-			HttpRequestClient.Response<CustomersHttp.Remove.Response>
-		>({
+	async remove(id: string): Promise<CustomersHttp.Remove.Response> {
+		return this.httpClient.delete<undefined, CustomersHttp.Remove.Response>({
 			url: `/customers/${id}`,
 		});
 	}
 
-	async restore(id: string): Promise<HttpRequestClient.Response<Customer>> {
-		return this.httpClient.post<undefined, HttpRequestClient.Response<Customer>>({
+	async restore(id: string): Promise<CustomersHttp.Restore.Response> {
+		return this.httpClient.post<undefined, CustomersHttp.Restore.Response>({
 			url: `/customers/${id}/restore`,
 		});
 	}

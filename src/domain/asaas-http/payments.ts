@@ -10,6 +10,7 @@ import {
 	Status,
 } from '../entities';
 import { BaseAsaasResponse } from '../entities/base-asaas-response';
+import { HttpRequestClient } from '../http-client';
 import { DeletedResponse } from './shared/deleted-response';
 
 export namespace PaymentsHttp {
@@ -29,6 +30,8 @@ export namespace PaymentsHttp {
 			postalService?: boolean;
 			split?: Array<Split>;
 		};
+
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace CreateWithInstallments {
@@ -51,6 +54,8 @@ export namespace PaymentsHttp {
 				percentualValue?: number;
 			}>;
 		};
+
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace CreateWithCreditCard {
@@ -60,15 +65,18 @@ export namespace PaymentsHttp {
 			creditCardToken?: string;
 			remoteIp: string;
 		}
+
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace TokenizeCreditCard {
 		export type Body = CreditCard.Input;
 
-		export type Response = {
-			customer: string;
-			creditCardHolderInfo: CreditCard.HolderInfo;
-		};
+		export type Response = HttpRequestClient.Response<CreditCard.Response>;
+	}
+
+	export namespace GeyById {
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace GetList {
@@ -95,30 +103,42 @@ export namespace PaymentsHttp {
 			offset?: number;
 			limit?: number;
 		}>;
+
+		export type Response = BaseAsaasResponse.List<Payment>;
 	}
 
 	export namespace Remove {
-		export type Response = DeletedResponse;
+		export type Response = HttpRequestClient.Response<DeletedResponse>;
+	}
+
+	export namespace Restore {
+		export type Response = HttpRequestClient.Response<Payment>;
+	}
+
+	export namespace Refund {
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace Update {
 		export type Body = Partial<Create.Body>;
+
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace GetBoletoBarCode {
-		export type Response = {
+		export type Response = HttpRequestClient.Response<{
 			identificationField: string;
 			nossoNumero: string;
 			barCode: string;
-		};
+		}>;
 	}
 
 	export namespace GetPixQrCode {
-		export type Response = {
+		export type Response = HttpRequestClient.Response<{
 			encodedImage: string;
 			payload: string;
 			expirationDate: string;
-		};
+		}>;
 	}
 
 	export namespace ConfirmCashCollection {
@@ -129,7 +149,11 @@ export namespace PaymentsHttp {
 			notifyCustomer: boolean;
 		}>;
 
-		export type Response = Payment;
+		export type Response = HttpRequestClient.Response<Payment>;
+	}
+
+	export namespace UndoReceivedInCash {
+		export type Response = HttpRequestClient.Response<Payment>;
 	}
 
 	export namespace UpdateDocument {
@@ -138,11 +162,11 @@ export namespace PaymentsHttp {
 			type: PaymentDocument['type'];
 		};
 
-		export type Response = PaymentDocument;
+		export type Response = HttpRequestClient.Response<PaymentDocument>;
 	}
 
 	export namespace GetDocument {
-		export type Response = PaymentDocument;
+		export type Response = HttpRequestClient.Response<PaymentDocument>;
 	}
 
 	export namespace GetAllDocuments {
@@ -150,6 +174,6 @@ export namespace PaymentsHttp {
 	}
 
 	export namespace RemoveDocument {
-		export type Response = DeletedResponse;
+		export type Response = HttpRequestClient.Response<DeletedResponse>;
 	}
 }

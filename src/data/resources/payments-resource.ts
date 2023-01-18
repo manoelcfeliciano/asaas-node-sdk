@@ -1,12 +1,9 @@
 import { PaymentsHttp } from '~/domain/asaas-http/payments';
-import { CreditCard, Payment } from '~/domain/entities';
-import { BaseAsaasResponse } from '~/domain/entities/base-asaas-response';
-import { HttpRequestClient } from '~/domain/http-client';
 import { BaseResource } from './base-resource';
 
 export class PaymentsResource extends BaseResource {
-	async create(params: PaymentsHttp.Create.Body): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<PaymentsHttp.Create.Body, Payment>({
+	async create(params: PaymentsHttp.Create.Body): Promise<PaymentsHttp.Create.Response> {
+		return this.httpClient.post<PaymentsHttp.Create.Body, PaymentsHttp.Create.Response>({
 			url: '/payments',
 			body: params,
 		});
@@ -14,8 +11,11 @@ export class PaymentsResource extends BaseResource {
 
 	async createWithCreditCard(
 		params: PaymentsHttp.CreateWithCreditCard.Body
-	): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<PaymentsHttp.CreateWithCreditCard.Body, Payment>({
+	): Promise<PaymentsHttp.CreateWithCreditCard.Response> {
+		return this.httpClient.post<
+			PaymentsHttp.CreateWithCreditCard.Body,
+			PaymentsHttp.CreateWithCreditCard.Response
+		>({
 			url: '/payments',
 			body: params,
 		});
@@ -23,8 +23,11 @@ export class PaymentsResource extends BaseResource {
 
 	async tokenizeCreditCard(
 		params: PaymentsHttp.TokenizeCreditCard.Body
-	): Promise<HttpRequestClient.Response<CreditCard.Response>> {
-		return this.httpClient.post<PaymentsHttp.TokenizeCreditCard.Body, CreditCard.Response>({
+	): Promise<PaymentsHttp.TokenizeCreditCard.Response> {
+		return this.httpClient.post<
+			PaymentsHttp.TokenizeCreditCard.Body,
+			PaymentsHttp.TokenizeCreditCard.Response
+		>({
 			url: '/creditCard/tokenize',
 			body: params,
 		});
@@ -32,21 +35,24 @@ export class PaymentsResource extends BaseResource {
 
 	async createWithInstallments(
 		params: PaymentsHttp.CreateWithInstallments.Body
-	): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<PaymentsHttp.CreateWithInstallments.Body, Payment>({
+	): Promise<PaymentsHttp.CreateWithInstallments.Response> {
+		return this.httpClient.post<
+			PaymentsHttp.CreateWithInstallments.Body,
+			PaymentsHttp.CreateWithInstallments.Response
+		>({
 			url: '/payments',
 			body: params,
 		});
 	}
 
-	async getById(id: string): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.get<{}, Payment>({
+	async getById(id: string): Promise<PaymentsHttp.GeyById.Response> {
+		return this.httpClient.get<{}, PaymentsHttp.GeyById.Response>({
 			url: `/payments/${id}`,
 		});
 	}
 
-	async getAll(query?: PaymentsHttp.GetList.Params): Promise<BaseAsaasResponse.List<Payment>> {
-		return this.httpClient.get<PaymentsHttp.GetList.Params, BaseAsaasResponse.List<Payment>>({
+	async getAll(query?: PaymentsHttp.GetList.Params): Promise<PaymentsHttp.GetList.Response> {
+		return this.httpClient.get<PaymentsHttp.GetList.Params, PaymentsHttp.GetList.Response>({
 			url: '/payments',
 			query,
 		});
@@ -55,45 +61,38 @@ export class PaymentsResource extends BaseResource {
 	async update(
 		id: string,
 		params: PaymentsHttp.Update.Body
-	): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.put<PaymentsHttp.Update.Body, Payment>({
+	): Promise<PaymentsHttp.Update.Response> {
+		return this.httpClient.put<PaymentsHttp.Update.Body, PaymentsHttp.Update.Response>({
 			url: `/payments/${id}`,
 			body: params,
 		});
 	}
 
-	async remove(id: string): Promise<HttpRequestClient.Response<PaymentsHttp.Remove.Response>> {
-		return this.httpClient.delete<
-			null,
-			HttpRequestClient.Response<PaymentsHttp.Remove.Response>
-		>({
+	async remove(id: string): Promise<PaymentsHttp.Remove.Response> {
+		return this.httpClient.delete<null, PaymentsHttp.Remove.Response>({
 			url: `/payments/${id}`,
 		});
 	}
 
-	async restore(id: string): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<null, HttpRequestClient.Response<Payment>>({
+	async restore(id: string): Promise<PaymentsHttp.Restore.Response> {
+		return this.httpClient.post<null, PaymentsHttp.Restore.Response>({
 			url: `/payments/${id}/restore`,
 		});
 	}
 
-	async refund(id: string): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<null, HttpRequestClient.Response<Payment>>({
+	async refund(id: string): Promise<PaymentsHttp.Refund.Response> {
+		return this.httpClient.post<null, PaymentsHttp.Refund.Response>({
 			url: `/payments/${id}/refund`,
 		});
 	}
 
-	async getBoletoBarCode(
-		id: string
-	): Promise<HttpRequestClient.Response<PaymentsHttp.GetBoletoBarCode.Response>> {
+	async getBoletoBarCode(id: string): Promise<PaymentsHttp.GetBoletoBarCode.Response> {
 		return this.httpClient.get<{}, PaymentsHttp.GetBoletoBarCode.Response>({
 			url: `/payments/${id}/identificationField`,
 		});
 	}
 
-	async getPixQrCode(
-		id: string
-	): Promise<HttpRequestClient.Response<PaymentsHttp.GetPixQrCode.Response>> {
+	async getPixQrCode(id: string): Promise<PaymentsHttp.GetPixQrCode.Response> {
 		return this.httpClient.get<{}, PaymentsHttp.GetPixQrCode.Response>({
 			url: `/payments/${id}/pixQrCode`,
 		});
@@ -102,10 +101,10 @@ export class PaymentsResource extends BaseResource {
 	async confirmCashCollection(
 		id: string,
 		query?: PaymentsHttp.ConfirmCashCollection.Params
-	): Promise<HttpRequestClient.Response<PaymentsHttp.ConfirmCashCollection.Response>> {
+	): Promise<PaymentsHttp.ConfirmCashCollection.Response> {
 		return this.httpClient.post<
 			null,
-			HttpRequestClient.Response<PaymentsHttp.ConfirmCashCollection.Response>,
+			PaymentsHttp.ConfirmCashCollection.Response,
 			PaymentsHttp.ConfirmCashCollection.Params
 		>({
 			url: `/payments/${id}/receiveInCash`,
@@ -113,8 +112,8 @@ export class PaymentsResource extends BaseResource {
 		});
 	}
 
-	async undoReceivedInCash(id: string): Promise<HttpRequestClient.Response<Payment>> {
-		return this.httpClient.post<null, HttpRequestClient.Response<Payment>>({
+	async undoReceivedInCash(id: string): Promise<PaymentsHttp.UndoReceivedInCash.Response> {
+		return this.httpClient.post<null, PaymentsHttp.UndoReceivedInCash.Response>({
 			url: `/payments/${id}/undoReceivedInCash`,
 		});
 	}
