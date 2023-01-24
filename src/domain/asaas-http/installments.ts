@@ -8,7 +8,11 @@ import {
 	Refund as RefundEntity,
 	Split,
 	CreditCard,
+	Installment,
 } from '../entities';
+import { BaseAsaasResponse } from '../entities/base-asaas-response';
+import { HttpRequestClient } from '../http-client';
+import { DeletedResponse } from './shared/deleted-response';
 
 export namespace InstallmentsHttp {
 	export namespace Refund {
@@ -54,7 +58,27 @@ export namespace InstallmentsHttp {
 			cannotBeDeletedReason: string;
 			canEdit: string;
 			cannotEditReason: string;
-			creditCard: CreditCard;
+			creditCard: CreditCard.Input;
 		};
+	}
+
+	export namespace GetList {
+		export type Params = Partial<{
+			offset: number;
+			limit: number;
+		}>;
+		export type Response = BaseAsaasResponse.List<Installment>;
+	}
+
+	export namespace GetById {
+		export type Response = HttpRequestClient.Response<Installment>;
+	}
+
+	export namespace Remove {
+		export type Response = HttpRequestClient.Response<DeletedResponse>;
+	}
+
+	export namespace Refund {
+		export type Response = HttpRequestClient.Response<Installment>;
 	}
 }
