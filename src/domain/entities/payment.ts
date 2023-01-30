@@ -42,5 +42,5 @@ export interface Payment {
 	anticipable: boolean;
 	chargeback?: Chargeback.Main;
 	refunds?: null | Refund.Payment[];
-	creditCard?: CreditCard;
+	creditCard?: CreditCard.Input;
 }

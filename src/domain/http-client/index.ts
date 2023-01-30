@@ -26,7 +26,7 @@ export namespace HttpRequestClient {
 		get<Q, R>(params: GetParams<Q>): Promise<Response<R>>;
 	}
 
-	export type PostParams<B = any, Q = undefined> = BaseParams<B, Q>;
+	export type PostParams<B = any, Q = any> = BaseParams<B, Q>;
 
 	export interface Post {
 		post<B, R, Q = undefined>(params: PostParams<B, Q>): Promise<Response<R>>;
