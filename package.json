@@ -6,12 +6,15 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
-		"playground": "TS_NODE_DEV=dev ts-node ./src/playground.ts"
+		"playground": "TS_NODE_DEV=dev ts-node ./src/playground.ts",
+		"test": "jest -i",
+		"test:watch": "jest --watch"
 	},
 	"dependencies": {
 		"axios": "1.2.2"
 	},
 	"devDependencies": {
+		"@faker-js/faker": "^7.6.0",
 		"@types/jest": "^29.2.5",
 		"@types/module-alias": "^2.0.1",
 		"@types/node": "^18.11.18",
