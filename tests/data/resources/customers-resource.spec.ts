@@ -1,5 +1,6 @@
 import { createMock } from '@golevelup/ts-jest';
 import { CustomersResource } from '../../../src/data/resources/customers-resource';
+
 const makeSut = () => {
 	const httpClientStub = createMock<CustomersResource['httpClient']>();
 
@@ -42,7 +43,8 @@ describe('CustomersResource', () => {
 			const id = 'any_id';
 			const error = new Error();
 			httpClientStub.get.mockRejectedValueOnce(error);
-			await expect(sut.getById(id)).rejects.toThrow(error);
+			const promise = sut.getById(id);
+			await expect(promise).rejects.toThrow(error);
 		});
 	});
 
@@ -69,7 +71,8 @@ describe('CustomersResource', () => {
 			const id = 'any_id';
 			const error = new Error();
 			httpClientStub.get.mockRejectedValueOnce(error);
-			await expect(sut.getById(id)).rejects.toThrow(error);
+			const promise = sut.getById(id);
+			await expect(promise).rejects.toThrow(error);
 		});
 	});
 
@@ -96,7 +99,8 @@ describe('CustomersResource', () => {
 			const body = { name: 'any_name' } as any;
 			const error = new Error();
 			httpClientStub.post.mockRejectedValueOnce(error);
-			await expect(sut.create(body)).rejects.toThrow(error);
+			const promise = sut.create(body);
+			await expect(promise).rejects.toThrow(error);
 		});
 	});
 
