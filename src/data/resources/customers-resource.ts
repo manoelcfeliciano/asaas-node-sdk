@@ -1,4 +1,4 @@
-import { CustomersHttp } from '~/domain/asaas-http/customers';
+import { CustomersHttp } from '../../domain/asaas-http/customers';
 import { BaseResource } from './base-resource';
 
 export class CustomersResource extends BaseResource {

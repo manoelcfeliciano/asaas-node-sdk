@@ -1,9 +1,10 @@
-import { BaseResourceConstructor } from '~/data/protocols/base-resource';
-import { CustomersResource } from '~/data/resources/customers-resource';
+
 import { makeHttpRequestClient } from './factories/http-request-client';
 import { AsaasSdkConfig } from './protocols/asaas-sdk-config';
 import { PaymentsResource } from '../data/resources/payments-resource';
-import { InstallmentsResource } from '~/data/resources/installments-resource';
+import { CustomersResource } from '../data/resources/customers-resource';
+import { InstallmentsResource } from '../data/resources/installments-resource';
+import { BaseResourceConstructor } from '../data/protocols/base-resource';
 
 export class AsaasSdk {
 	private readonly _customers: CustomersResource;

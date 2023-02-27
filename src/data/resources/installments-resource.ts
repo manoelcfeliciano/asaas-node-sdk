@@ -1,4 +1,5 @@
-import { InstallmentsHttp } from '~/domain/asaas-http/installments';
+
+import { InstallmentsHttp } from '../../domain/asaas-http/installments';
 import { BaseResource } from './base-resource';
 
 export class InstallmentsResource extends BaseResource {

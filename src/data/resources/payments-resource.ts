@@ -1,4 +1,5 @@
-import { PaymentsHttp } from '~/domain/asaas-http/payments';
+
+import { PaymentsHttp } from '../../domain/asaas-http/payments';
 import { BaseResource } from './base-resource';
 
 export class PaymentsResource extends BaseResource {
