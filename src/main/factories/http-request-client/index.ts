@@ -1,7 +1,8 @@
-import { HttpRequestClient } from '~/domain/http-client';
-import { AsaasSdkConfig } from '~/main/protocols/asaas-sdk-config';
+
+import { HttpRequestClient } from '../../../domain/http-client';
 import { AxiosHttpClient } from '../../../infra/http-client/axios-adapter/index';
 import { mainConfig } from '../../config/main';
+import { AsaasSdkConfig } from '../../protocols/asaas-sdk-config';
 
 export const makeHttpRequestClient = (config: AsaasSdkConfig): HttpRequestClient => {
 	return new AxiosHttpClient({

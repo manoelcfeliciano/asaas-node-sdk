@@ -1,19 +1,21 @@
 import { BillingType } from './billing-type';
+import { ChargeType } from './charge-type';
 import { Subscription } from './subscription';
 
-export namespace PaymentLink {
-	export type ChargeType = 'DETACHED' | 'RECURRENT' | 'INSTALLMENT';
-
-	export type Main = {
-		name: string;
-		description: string;
-		endDate: string;
-		value: number;
-		billingType: BillingType;
-		chargeType: PaymentLink.ChargeType;
-		dueDateLimitDays: number;
-		subscriptionCycle: Subscription.Cycle | null;
-		maxInstallmentCount: number;
-		notificationEnabled: boolean;
-	};
+export interface PaymentLink {
+	id: string;
+	name: string;
+	value: number;
+	active: boolean;
+	chargeType: ChargeType;
+	url: string;
+	billingType: BillingType;
+	subscriptionCycle: Subscription.Cycle | null;
+	description: string;
+	endDate: string;
+	deleted: boolean;
+	viewCount: number;
+	maxInstallmentCount: number;
+	dueDateLimitDays: number;
+	notificationEnabled: boolean;
 }
